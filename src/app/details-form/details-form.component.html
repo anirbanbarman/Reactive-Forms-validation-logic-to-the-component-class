@@ -1,0 +1,88 @@
+<div class="form_fb" [formGroup]="detailsform_fb">
+  <h2>Details Form(FormBuilder)</h2>
+  <label for="Name">Name</label>
+  <input
+    id="Name"
+    type="text"
+    formControlName="Name"
+    (blur)="validationErrors(detailsform_fb)"
+  />
+  <span class="error" *ngIf="detailsFormErrors.Name">
+    {{ detailsFormErrors.Name }} </span
+  ><br />
+  <label for="School">School</label>
+  <input
+    id="School"
+    type="text"
+    formControlName="School"
+    (blur)="validationErrors(detailsform_fb)"
+  />
+  <span class="error" *ngIf="detailsFormErrors.School"
+    >{{ detailsFormErrors.School }} </span
+  ><br />
+
+  <label for="sport">Sport</label>
+
+  <label>
+    <input
+      id="sport1"
+      type="radio"
+      value="cricket"
+      formControlName="Sports"
+      (blur)="validationErrors(detailsform_fb)"
+    />Cricket
+  </label>
+
+  <label>
+    <input
+      id="sport2"
+      type="radio"
+      value="football"
+      formControlName="Sports"
+      (blur)="validationErrors(detailsform_fb)"
+    />football </label
+  ><br />
+  <span class="error" *ngIf="detailsFormErrors.Sports"
+    >{{ detailsFormErrors.Sports }} </span
+  ><br />
+
+  <button style="margin-left:30%" (click)="handleAddAddress()">
+    Add Address
+  </button>
+
+  <div
+    formArrayName="Address"
+    *ngFor="let addr of detailsform_fb.get('Address').controls; let i = index"
+    class="address"
+  >
+    <h3>Address{{ i }}</h3>
+    <div [formGroupName]="i">
+      <label for="Street+${i}">Street</label>
+      <input
+        id="Street+${i}"
+        type="text"
+        formControlName="Street"
+        (blur)="validationErrors(detailsform_fb)"
+      /><br />
+      <span class="error" *ngIf="detailsFormErrors.Street"
+        >{{ detailsFormErrors.Street }} </span
+      ><br />
+      <label for="Landmark+${i}">Landmark</label>
+      <input
+        id="Landmark +${i}"
+        type="text"
+        formControlName="Landmark"
+        (blur)="validationErrors(detailsform_fb)"
+      />
+      <span class="error" *ngIf="detailsFormErrors.Landmark"
+        >{{ detailsFormErrors.Landmark }} </span
+      ><br />
+    </div>
+  </div>
+  <br />
+  <button (click)="showDetails_fb()">Show Details</button>
+
+  <span>{{ details_fb }}</span>
+</div>
+
+
